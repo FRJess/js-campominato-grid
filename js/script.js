@@ -3,10 +3,53 @@
 // Ogni cella ha un numero progressivo, da 1 a 100.
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 // Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
-// **Bonus**
-// Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
-// - con difficoltà 1 => 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
-// - con difficoltà 2 => 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
-// - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
-// **Consigli del giorno:**  :party_wizard:
-// Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi.
+
+
+// 1 generare la griglia
+// 2 numeri nella griglia
+// 3 creare click to start
+// 4 click della cella
+
+// VARIABLES DECLARATION AND INIZIALIZATION
+const container = document.querySelector(".jt-container");
+const totalCell = 100;
+const inputBtn = document.getElementById("gioca");
+const resetBtn = document.getElementById("reset");
+
+// Play button
+inputBtn.addEventListener("click", function(){
+  //ciclo for per generare i quadratini
+  container.innerHTML = "";
+  for(let i = 0; i < totalCell; i++){
+      squareGenerator(i);
+  }
+})
+
+//Reset
+resetBtn.addEventListener("click", function(){
+  container.innerHTML = "";
+})
+
+// FUNCTIONS
+
+//Cell generator
+function squareGenerator(indexSquare){
+    const square = document.createElement("div");
+    square.classList.add("square");
+    container.append(square);
+    square.style.width = generateCalcCss();
+    square.style.height = generateCalcCss();
+    square.innerHTML = indexSquare + 1;
+    square.addEventListener("click", clickSquare);
+};
+
+// Cell dimensions
+function generateCalcCss(){
+  return `calc(100% / ${Math.sqrt(totalCell)})`;
+};
+
+//Color change if click
+function clickSquare(){
+  this.classList.add('open');
+  console.log ("La cella cliccata è la numero $()")
+};
