@@ -51,5 +51,5 @@ function generateCalcCss(){
 //Color change if click
 function clickSquare(){
   this.classList.add('open');
-  console.log ("La cella cliccata è la numero $()")
+  console.log ("La cella cliccata è la numero $(``)")
 };
